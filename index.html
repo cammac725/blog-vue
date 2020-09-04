@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.12/dist/vue.js"></script>
+  <link rel="stylesheet" href="style.css">
+  <title>Blog-Vue</title>
+</head>
+<body>
+
+  <h1>Welcome to my blog!</h1>
+
+  <div id="blog-posts">
+    
+    <blog-post
+    v-for='post in posts'
+    v-bind:blogpost='post'
+    ></blog-post>
+
+  </div>
+
+  <script>
+    Vue.component('blog-post', {
+      props: ['blogpost'],
+      template: `<div id="post">
+                    < h2 > {{ blogpost.title }}</h2 >
+                    <h3>{{ blogpost.author }}</h3>
+                    <h4>{{ blogpost.date }}</h4>
+                    <p>{{ blogpost.content }}</p>
+                 </div >`,
+    })
+
+    var blogVue = new Vue({
+      el: '#blog-posts',
+      data: {
+        posts: [
+          {
+            title: 'First Post',
+            author: 'Cam',
+            date: 'Sept 3, 2020',
+            content: 'This is the content.'
+          },
+          {
+            title: 'Second Post',
+            author: 'Cam',
+            date: 'Sept 4, 2020',
+            content: 'This is some other content.'
+          },
+        ]
+      }
+    })
+  </script>
+
+</body>
+</html>
