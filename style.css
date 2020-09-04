@@ -19,3 +19,14 @@ h1 {
   margin-bottom: 30px;;
 }
 
+#postCreation {
+  margin: 0 auto;
+  max-width: 50%;
+  text-align: center;
+  border: 2px solid gray;
+}
+
+#postCreation > * {
+  margin: 10px;
+}
+

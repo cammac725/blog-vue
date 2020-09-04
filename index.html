@@ -12,19 +12,26 @@
   <h1>Welcome to my blog!</h1>
 
   <div id="blog-posts">
-    
     <blog-post
     v-for='post in posts'
     v-bind:blogpost='post'
     ></blog-post>
+  </div>
 
+  <div id="postCreation">
+    <h2>Make a new post</h2>
+    <input v-model='title' ><br>
+    <input v-model='author' ><br>
+    <input v-model='date' ><br>
+    <input v-model='content' ><br>
+    <button v-on:click='publishPost'>Publish</button>
   </div>
 
   <script>
     Vue.component('blog-post', {
       props: ['blogpost'],
       template: `<div id="post">
-                    < h2 > {{ blogpost.title }}</h2 >
+                    <h2> {{ blogpost.title }}</h2 >
                     <h3>{{ blogpost.author }}</h3>
                     <h4>{{ blogpost.date }}</h4>
                     <p>{{ blogpost.content }}</p>
@@ -48,6 +55,31 @@
             content: 'This is some other content.'
           },
         ]
+      }
+    })
+
+    var createPostVue = new Vue({
+      el: '#postCreation',
+      data: {
+        title: '',
+        author: '',
+        date: '',
+        content: '',
+      },
+      methods: {
+        publishPost: function() {
+          var postData = {
+            title: this.title,
+            author: this.author,
+            date: this.date,
+            content: this.content,
+          }
+          blogVue.posts.push(postData)
+          this.title = '',
+          this.author = '',
+          this.date = '', 
+          this.content = ''
+        }
       }
     })
   </script>
